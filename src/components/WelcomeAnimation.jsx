@@ -58,7 +58,7 @@ export default function WelcomeAnimation({ onComplete }) {
               className="space-y-6"
             >
               <motion.h1
-                className="text-6xl md:text-8xl font-bold text-slate-800 font-[Poppins] tracking-tight"
+                className="text-4xl md:text-6xl lg:text-8xl font-bold text-slate-800 font-[Poppins] tracking-tight"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{

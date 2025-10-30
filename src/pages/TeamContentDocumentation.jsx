@@ -53,7 +53,7 @@ export default function TeamContentDocumentation() {
           >
             ← Back to Execom
           </Link>
-          <h1 className="text-6xl md:text-7xl font-bold font-[Orbitron] text-primary mb-6 tracking-wider">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-[Orbitron] text-primary mb-6 tracking-wider">
             Content & Documentation Team
           </h1>
           <p className="text-secondary text-lg md:text-xl font-[Exo_2] max-w-3xl mx-auto leading-relaxed">

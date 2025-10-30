@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   const { isDark, toggleTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.nav
@@ -21,7 +23,7 @@ export default function Navbar() {
           ISTE MBCET
         </Link>
 
-        <div className="flex items-center space-x-8">
+        <div className="flex items-center space-x-4 md:space-x-8">
           <div className="hidden md:flex space-x-6">
             <Link to="/" className="font-[Exo_2] hover:text-purple-400 transition-colors relative group">
               Home
@@ -49,6 +51,20 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* Mobile Menu Button */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-full glass hover:glow transition-all duration-300"
+          >
+            {isOpen ? (
+              <XMarkIcon className="w-6 h-6 text-red-400" />
+            ) : (
+              <Bars3Icon className="w-6 h-6 text-purple-400" />
+            )}
+          </motion.button>
+
           {/* Theme Toggle */}
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -64,6 +80,62 @@ export default function Navbar() {
           </motion.button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden absolute top-full left-0 w-full glass shadow-2xl border-t border-gray-200 dark:border-gray-700"
+          style={{ backgroundColor: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}
+        >
+          <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
+            <Link
+              to="/"
+              onClick={() => setIsOpen(false)}
+              className="block font-[Exo_2] hover:text-purple-400 transition-colors py-2"
+            >
+              Home
+            </Link>
+            <Link
+              to="/execom"
+              onClick={() => setIsOpen(false)}
+              className="block font-[Exo_2] hover:text-pink-400 transition-colors py-2"
+            >
+              Execom
+            </Link>
+            <Link
+              to="/events"
+              onClick={() => setIsOpen(false)}
+              className="block font-[Exo_2] hover:text-blue-400 transition-colors py-2"
+            >
+              Events
+            </Link>
+            <Link
+              to="/join-us"
+              onClick={() => setIsOpen(false)}
+              className="block font-[Exo_2] hover:text-green-400 transition-colors py-2"
+            >
+              Join Us
+            </Link>
+            <Link
+              to="/gallery"
+              onClick={() => setIsOpen(false)}
+              className="block font-[Exo_2] hover:text-yellow-400 transition-colors py-2"
+            >
+              Gallery
+            </Link>
+            <Link
+              to="/login"
+              onClick={() => setIsOpen(false)}
+              className="block font-[Exo_2] hover:text-red-400 transition-colors py-2"
+            >
+              Login
+            </Link>
+          </div>
+        </motion.div>
+      )}
     </motion.nav>
   );
 }
